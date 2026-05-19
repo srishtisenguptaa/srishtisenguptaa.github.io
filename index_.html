@@ -382,6 +382,108 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 /* ══ TOAST ══ */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--plum);color:var(--cream);padding:12px 24px;border-radius:100px;font-size:.72rem;letter-spacing:.1em;opacity:0;transition:all .4s;z-index:600;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ══════════════════════════════════════════
+   HAMBURGER MENU
+══════════════════════════════════════════ */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;z-index:600;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--plum);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--cream);z-index:550;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{font-family:'Libre Baskerville',serif;font-size:1.6rem;color:var(--plum);text-decoration:none;font-style:italic;transition:color .2s}
+.mobile-menu a:hover{color:var(--violet)}
+.mobile-menu .nav-cv-m{margin-top:12px;padding:12px 32px;background:var(--violet);color:white;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-style:normal}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* Switch to vertical scrolling */
+  body{overflow:auto;height:auto;cursor:auto}
+  .cursor,.cursor-ring{display:none}
+  .h-scroll-wrap{flex-direction:column;height:auto;overflow-x:hidden;overflow-y:visible;scroll-snap-type:none}
+  .panel{min-width:100%;height:auto;min-height:auto;padding:90px 0 60px;scroll-snap-align:none;flex-shrink:1}
+
+  /* Nav */
+  nav{padding:16px 24px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+
+  /* Dots — hide on mobile, too many panels */
+  .panel-nav{display:none}
+  .scroll-hint{display:none}
+  .key-hint{display:none}
+  .panel-num{display:none}
+
+  /* ── HERO ── */
+  .hero-inner{grid-template-columns:1fr;gap:32px;width:92vw;padding-top:20px;text-align:center}
+  .hero-img-col{order:-1}
+  .avatar-wrap{width:200px;height:250px;margin:0 auto}
+  .avatar-ring{width:230px;height:285px}
+  .avatar-ring2{width:255px;height:310px}
+  .avail-badge{font-size:.55rem;padding:6px 14px}
+  .tech-float{display:none}
+  .hero-blob{width:320px;height:300px;left:50%}
+  .metrics-strip{flex-wrap:wrap}
+  .metric{flex:1 1 40%;border-bottom:1px solid rgba(123,79,166,.12)}
+  .hero-bio{max-width:100%}
+  .hero-actions{justify-content:center}
+  .contact-strip{justify-content:center}
+  .transition-badge{flex-wrap:wrap;justify-content:center;text-align:center}
+
+  /* ── STORY ── */
+  .trans-inner{grid-template-columns:1fr;gap:32px;width:92vw;padding-top:20px}
+
+  /* ── SKILLS ── */
+  .skills-inner{width:92vw;padding-top:20px}
+  .skills-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .tech-logos{gap:10px}
+
+  /* ── EDUCATION ── */
+  .edu-inner{width:92vw;padding-top:20px}
+  .edu-grid{grid-template-columns:1fr;gap:16px}
+  .cert-grid{grid-template-columns:1fr;grid-column:span 1;gap:12px}
+
+  /* ── EXPERIENCE ── */
+  .exp-inner{width:92vw;padding-top:20px}
+  .timeline{padding-left:24px}
+  .t-item{grid-template-columns:1fr;gap:4px}
+  .t-period{font-size:.65rem}
+
+  /* ── PROJECTS ── */
+  #projects{min-width:100%}
+  .proj-inner{width:92vw;padding-top:20px;padding-left:0}
+  .proj-grid{grid-template-columns:1fr;gap:16px;width:100%}
+
+  /* ── CULTURAL ── */
+  .cult-inner{width:92vw;padding-top:20px}
+  .cult-grid{grid-template-columns:1fr;gap:14px}
+  .cc1,.cc4{grid-column:span 1}
+
+  /* ── EXPLORING ── */
+  .exp2-inner{width:92vw;padding-top:20px;grid-template-columns:1fr;gap:32px}
+
+  /* ── CONTACT ── */
+  .contact-inner{width:92vw;padding-top:20px}
+  .contact-row{flex-direction:column;align-items:center}
+  .cbtn{width:100%;max-width:300px;justify-content:center}
+  .social-row{flex-direction:column;align-items:center;gap:14px}
+  .contact-deco{font-size:28vw}
+}
+
+@media (max-width: 540px) {
+  .skills-grid{grid-template-columns:1fr}
+  .hero-name{font-size:2.6rem}
+  .contact-big{font-size:2.2rem}
+  .trans-title{font-size:2.2rem}
+  .s-title{font-size:1.8rem}
+  nav{padding:14px 18px}
+  .ha-btn{padding:10px 18px;font-size:.66rem}
+}
 </style>
 </head>
 <body>
@@ -400,20 +502,37 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo" onclick="gp(0)">Srishti Sengupta</div>
+  <div class="nav-logo" onclick="navTo(0)" style="cursor:pointer">Srishti Sengupta</div>
   <ul class="nav-links">
-    <li><a href="#" onclick="gp(0);return false" data-panel="0">Info</a></li>
-    <li><a href="#" onclick="gp(1);return false" data-panel="1">Story</a></li>
-    <li><a href="#" onclick="gp(2);return false" data-panel="2">Skills</a></li>
-    <li><a href="#" onclick="gp(3);return false" data-panel="3">Education</a></li>
-    <li><a href="#" onclick="gp(4);return false" data-panel="4">Experience</a></li>
-    <li><a href="#" onclick="gp(5);return false" data-panel="5">Projects</a></li>
-    <li><a href="#" onclick="gp(6);return false" data-panel="6">Culture</a></li>
-    <li><a href="#" onclick="gp(7);return false" data-panel="7">Exploring</a></li>
-    <li><a href="#" onclick="gp(8);return false" data-panel="8">Contact</a></li>
+    <li><a href="#" onclick="navTo(0);return false" data-panel="0">Info</a></li>
+    <li><a href="#" onclick="navTo(1);return false" data-panel="1">Story</a></li>
+    <li><a href="#" onclick="navTo(2);return false" data-panel="2">Skills</a></li>
+    <li><a href="#" onclick="navTo(3);return false" data-panel="3">Education</a></li>
+    <li><a href="#" onclick="navTo(4);return false" data-panel="4">Experience</a></li>
+    <li><a href="#" onclick="navTo(5);return false" data-panel="5">Projects</a></li>
+    <li><a href="#" onclick="navTo(6);return false" data-panel="6">Culture</a></li>
+    <li><a href="#" onclick="navTo(7);return false" data-panel="7">Exploring</a></li>
+    <li><a href="#" onclick="navTo(8);return false" data-panel="8">Contact</a></li>
     <a class="nav-cv" href="#" onclick="downloadCV();return false">↓ Download CV</a>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" style="display:flex">
+  <a href="#" onclick="mobileNav(0)">Info</a>
+  <a href="#" onclick="mobileNav(1)">Story</a>
+  <a href="#" onclick="mobileNav(2)">Skills</a>
+  <a href="#" onclick="mobileNav(3)">Education</a>
+  <a href="#" onclick="mobileNav(4)">Experience</a>
+  <a href="#" onclick="mobileNav(5)">Projects</a>
+  <a href="#" onclick="mobileNav(6)">Culture</a>
+  <a href="#" onclick="mobileNav(7)">Exploring</a>
+  <a href="#" onclick="mobileNav(8)">Contact</a>
+  <a class="nav-cv-m" href="#" onclick="downloadCV();toggleMobileMenu();return false">↓ Download CV</a>
+</div>
 
 <!-- PANEL DOTS -->
 <div class="panel-nav" id="pnav">
@@ -496,9 +615,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
         </div>
 
         <div class="hero-actions fi v" style="transition-delay:.4s">
-          <a class="ha-btn primary" href="#" onclick="gp(8);return false">Let's Talk →</a>
+          <a class="ha-btn primary" href="#" onclick="navTo(8);return false">Let's Talk →</a>
           <a class="ha-btn outline" href="#" onclick="downloadCV();return false">↓ Download CV</a>
-          <a class="ha-btn outline" href="#" onclick="gp(5);return false">View Projects</a>
+          <a class="ha-btn outline" href="#" onclick="navTo(5);return false">View Projects</a>
         </div>
 
         <div class="contact-strip fi v" style="transition-delay:.45s">
@@ -1001,6 +1120,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 </div><!-- end h-scroll-wrap -->
 
 <script>
+const isMobile = () => window.innerWidth <= 900;
+
 /* ── INTRO ── */
 const intro = document.getElementById('intro');
 requestAnimationFrame(() => {
@@ -1008,37 +1129,41 @@ requestAnimationFrame(() => {
   setTimeout(() => {
     intro.classList.add('done');
     document.body.classList.add('intro-done');
-    document.getElementById('keyHint').classList.add('show');
+    const kh = document.getElementById('keyHint');
+    if(kh && !isMobile()) kh.classList.add('show');
   }, 2400);
 });
 
-/* ── CURSOR ── */
+/* ── CURSOR (desktop only) ── */
 const curEl = document.getElementById('cur');
 const ringEl = document.getElementById('curRing');
 let mx=0, my=0, rx=0, ry=0;
-document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-(function anim() {
-  curEl.style.left = mx+'px'; curEl.style.top = my+'px';
-  rx += (mx-rx)*.1; ry += (my-ry)*.1;
-  ringEl.style.left = rx+'px'; ringEl.style.top = ry+'px';
-  requestAnimationFrame(anim);
-})();
-document.querySelectorAll('a,button,.chip,.sk-card,.proj-card,.edu-card,.cult-card,.t-item,.journey-step,.ex-item,.book-item').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    curEl.style.transform='translate(-50%,-50%) scale(2.5)';
-    ringEl.style.transform='translate(-50%,-50%) scale(1.6)';
-    ringEl.style.opacity='.25';
+if(!isMobile()){
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  (function anim() {
+    curEl.style.left = mx+'px'; curEl.style.top = my+'px';
+    rx += (mx-rx)*.1; ry += (my-ry)*.1;
+    ringEl.style.left = rx+'px'; ringEl.style.top = ry+'px';
+    requestAnimationFrame(anim);
+  })();
+  document.querySelectorAll('a,button,.chip,.sk-card,.proj-card,.edu-card,.cult-card,.t-item,.journey-step,.ex-item,.book-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      curEl.style.transform='translate(-50%,-50%) scale(2.5)';
+      ringEl.style.transform='translate(-50%,-50%) scale(1.6)';
+      ringEl.style.opacity='.25';
+    });
+    el.addEventListener('mouseleave', () => {
+      curEl.style.transform='translate(-50%,-50%) scale(1)';
+      ringEl.style.transform='translate(-50%,-50%) scale(1)';
+      ringEl.style.opacity='.45';
+    });
   });
-  el.addEventListener('mouseleave', () => {
-    curEl.style.transform='translate(-50%,-50%) scale(1)';
-    ringEl.style.transform='translate(-50%,-50%) scale(1)';
-    ringEl.style.opacity='.45';
-  });
-});
+}
 
 /* ── PARTICLES ── */
 const pContainer = document.getElementById('particles');
-for(let i=0;i<18;i++){
+const numParticles = isMobile() ? 8 : 18;
+for(let i=0;i<numParticles;i++){
   const p = document.createElement('div');
   p.className='particle';
   const size = 4+Math.random()*10;
@@ -1061,6 +1186,16 @@ const navLinks = document.querySelectorAll('.nav-links a[data-panel]');
 const scrollHint = document.getElementById('scrollHint');
 let currentPanel = 0;
 
+/* navTo: horizontal on desktop, vertical scroll to section on mobile */
+function navTo(i) {
+  if(isMobile()){
+    panels[i].scrollIntoView({behavior:'smooth', block:'start'});
+  } else {
+    gp(i);
+  }
+}
+window.navTo = navTo;
+
 function gp(i) {
   let off = 0;
   for(let j=0;j<i;j++) off += panels[j].offsetWidth;
@@ -1068,7 +1203,7 @@ function gp(i) {
 }
 window.gp = gp;
 
-/* Active panel detection */
+/* Active panel detection — desktop horizontal */
 const snapObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting && e.intersectionRatio >= .45) {
@@ -1078,35 +1213,39 @@ const snapObs = new IntersectionObserver(entries => {
       navLinks.forEach(a=>a.classList.remove('active-nav'));
       if(dots[i]) dots[i].classList.add('active');
       navLinks.forEach(a=>{ if(+a.dataset.panel===i) a.classList.add('active-nav'); });
-      if(i > 0) scrollHint.classList.add('hide');
-      else scrollHint.classList.remove('hide');
+      if(scrollHint){ if(i > 0) scrollHint.classList.add('hide'); else scrollHint.classList.remove('hide'); }
     }
   });
-},{root:scroller, threshold:.45});
+},{root: isMobile() ? null : scroller, threshold:.45});
 panels.forEach(p=>snapObs.observe(p));
 
 /* Fade-in observer */
+const fadeRoot = isMobile() ? null : scroller;
 const fadeObs = new IntersectionObserver(entries => {
   entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('v'); });
-},{root:scroller, threshold:.07});
+},{root: fadeRoot, threshold:.07});
 document.querySelectorAll('.fi,.fi-left,.fi-right,.fi-scale').forEach(el=>fadeObs.observe(el));
 
-/* Wheel → horizontal */
-scroller.addEventListener('wheel', e => {
-  e.preventDefault();
-  scroller.scrollBy({left:e.deltaY*2.6, behavior:'smooth'});
-},{passive:false});
+/* Wheel → horizontal (desktop only) */
+if(!isMobile()){
+  scroller.addEventListener('wheel', e => {
+    e.preventDefault();
+    scroller.scrollBy({left:e.deltaY*2.6, behavior:'smooth'});
+  },{passive:false});
+}
 
-/* Keyboard */
+/* Keyboard (desktop only) */
 document.addEventListener('keydown', e => {
+  if(isMobile()) return;
   if(e.key==='ArrowRight' && currentPanel < panels.length-1) gp(currentPanel+1);
   if(e.key==='ArrowLeft'  && currentPanel > 0)               gp(currentPanel-1);
 });
 
-/* Touch / swipe */
+/* Touch swipe — horizontal panels on desktop only */
 let touchStartX=0, touchStartY=0;
 scroller.addEventListener('touchstart', e=>{ touchStartX=e.touches[0].clientX; touchStartY=e.touches[0].clientY; },{passive:true});
 scroller.addEventListener('touchend', e=>{
+  if(isMobile()) return; // let native vertical scroll handle mobile
   const dx = touchStartX - e.changedTouches[0].clientX;
   const dy = touchStartY - e.changedTouches[0].clientY;
   if(Math.abs(dx) > Math.abs(dy) && Math.abs(dx)>50){
@@ -1115,10 +1254,26 @@ scroller.addEventListener('touchend', e=>{
   }
 },{passive:true});
 
+/* ── MOBILE MENU ── */
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const burger = document.getElementById('hamburger');
+  const isOpen = menu.classList.contains('open');
+  menu.classList.toggle('open', !isOpen);
+  burger.classList.toggle('open', !isOpen);
+}
+window.toggleMobileMenu = toggleMobileMenu;
+
+function mobileNav(i){
+  toggleMobileMenu();
+  setTimeout(()=>{ panels[i].scrollIntoView({behavior:'smooth', block:'start'}); }, 300);
+}
+window.mobileNav = mobileNav;
+
 /* ── CV DOWNLOAD ── */
 function downloadCV(){
-  showToast('Opening CV download… Add your PDF file and update the href!');
-  window.open('SrishtiSengupta_CV.pdf')
+  showToast('Opening CV…');
+  window.open('SrishtiSengupta_CV.pdf');
 }
 window.downloadCV=downloadCV;
 
@@ -1138,12 +1293,6 @@ function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),3000);
-}
-
-/* ── COUNTER ANIMATION for metrics ── */
-function animateCounters(){
-  const vals=[{el:'.metric-val',targets:['1.5+','4','45%','0']}];
-  // already displayed as text — no change needed
 }
 </script>
 </body>
