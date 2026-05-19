@@ -248,8 +248,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(107,222,138,.5)}50%{box-shadow:0 0 0 5px rgba(107,222,138,0)}}
 
 /* floating tech icons */
-.tech-float{display:none!important}
-.hero-particles{display:none!important}
+.tech-float{position:absolute;font-size:1.6rem;animation:floatIcon 4s ease-in-out infinite;opacity:.7}
+.tf1{top:15%;right:-15px;animation-delay:0s}
+.tf2{top:45%;right:-25px;animation-delay:1s}
+.tf3{bottom:20%;right:-10px;animation-delay:2s}
+@keyframes floatIcon{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
 /* ══════════════════════════════════════════
    PANEL 2 — AI TRANSITION / PHILOSOPHY
@@ -747,7 +750,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
   <!-- ① HERO -->
   <section class="panel" id="hero">
     <div class="hero-blob"></div>
-    
+    <div class="hero-particles" id="particles"></div>
     <div class="hero-inner">
       <div class="hero-text fi v">
         <p class="hero-eyebrow">AI Engineer · Portfolio 2025</p>
@@ -829,9 +832,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
         <div class="avatar-ring"></div>
         <div class="avatar-ring2"></div>
         <div class="avail-badge"><span class="avail-dot"></span>Open to AI Roles</div>
-        
-        
-        
+        <div class="tech-float tf1">🤖</div>
+        <div class="tech-float tf2">⚡</div>
+        <div class="tech-float tf3">🐍</div>
       </div>
     </div>
     <span class="panel-num">01 / 09</span>
@@ -1402,6 +1405,23 @@ if(!isMobile()){
   });
 }
 
+/* ── PARTICLES ── */
+const pContainer = document.getElementById('particles');
+const numParticles = isMobile() ? 8 : 18;
+for(let i=0;i<numParticles;i++){
+  const p = document.createElement('div');
+  p.className='particle';
+  const size = 4+Math.random()*10;
+  const colors = ['rgba(196,168,216,.35)','rgba(123,79,166,.25)','rgba(201,169,110,.2)','rgba(143,168,139,.2)'];
+  Object.assign(p.style,{
+    width:size+'px', height:size+'px',
+    left:Math.random()*100+'%',
+    background:colors[Math.floor(Math.random()*colors.length)],
+    animationDuration:(8+Math.random()*14)+'s',
+    animationDelay:(Math.random()*10)+'s'
+  });
+  pContainer.appendChild(p);
+}
 
 /* ── PANEL NAVIGATION ── */
 const scroller = document.getElementById('scroller');
